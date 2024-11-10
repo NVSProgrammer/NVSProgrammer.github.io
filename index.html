@@ -1,26 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>NWT Page</title>
-        <style>
-            h1, div, p, img {
-                display: grid;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            img {
-                width: 150px;
-                height: 150px;
-            }
-        </style>
-    </head>
-    <body>
+
+<head>
+    <link rel="stylesheet" href="style/position.css" />
+    <link rel="icon" href="img/icons/nwt.png" />
+    <meta charset="UTF-8">
+    <title>NWT Page</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #2a71ab, #1d6098, #084474);
+        }
+
+        #Stan {
+            width: 500px;
+            height: 300px;
+        }
+
+        #Stan div {
+            position: relative;
+            width: 263px;
+            height: 68px;
+        }
+
+        #Stan img {
+            position: absolute;
+            right: -140px;
+            bottom: -160px;
+            width: 430px;
+            height: 430px;
+        }
+
+        #Stan svg {
+            width: 50px;
+            height: 50px;
+            z-index: -1;
+        }
+
+        #Stan h1 {
+            width: max-content;
+            padding: 5px;
+            background-color: #3e96a8a8;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center-x">
+        <h1 class="center-x">Still under development. :)</h1>
+        <p class="center-x">
+            There will be news about my projects, Q&A about my projects, download links for my projects, help for my
+            projects.
+        </p>
+    </div>
+    <img src="img/icons/nwt.png" class="center-x" height="150px" width="150px">
+    <div id="Stan" class="corner-br">
         <div>
-            <h1>Still under development. :)</h1>
-            <p>
-                There will be news about my projects, Q&A about my projects, download links for my projects, help for my projects.
-            </p>
+            <svg class="corner-br">
+                <polygon fill="#3e96a8a8" points="25,0,0,25,50,50" />
+            </svg>
+            <h1>Hello, I am Stan!</h1>
         </div>
-        <img src="style/icons/icon.png">
-    </body>
+        <img src="img/assistants/Stan.png">
+    </div>
+</body>
+
 </html>
