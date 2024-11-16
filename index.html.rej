@@ -1,9 +1,0 @@
-diff a/index.html b/index.html	(rejected hunks)
-@@ -14,6 +14,7 @@
-         #Stan {
-             width: 500px;
-             height: 335px;
-+            overflow: hidden;
-         }
- 
-         #Stan div {
