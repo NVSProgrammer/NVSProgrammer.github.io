@@ -1,4 +1,6 @@
 #bat-body {
+    position: fixed;
+    top: 0px;
     height: 55px;
     background-color: transparent;
     >* {
