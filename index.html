@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="style/main.css" />
     <link rel="stylesheet" href="style/position.css" />
+    <link rel="stylesheet" href="style/bar.css" />
     <link rel="icon" href="img/icons/nwt.png" />
     <meta charset="UTF-8">
     <title>NWT Page</title>
@@ -11,13 +12,36 @@
 </head>
 
 <body>
-    <iframe src="shared/bar/index.html" class="
-        top-r
-        center-self-x
-    " id="bar"></iframe>
-    <h1>Still under development! :)</h1>
-    <p class="corner-br">version 1.0.0 barebones</p>
-    <a href="https://github.com/NVSProgrammer/NVSProgrammer.github.io" class="corner-bl">GitHub Repository</a>
+    <div id="bar_body">
+        <div id="bg"></div>
+        <div id="l-bar">
+            <div class="
+                    childs-content-center-xy
+                    childs-self-center-y-r
+                ">
+                <button onclick="bar_button('home');">
+                    <img src="img/icons/nwt.png" width="40px" height="40px">
+                </button>
+                <button onclick="bar_button('home');">HOME</button>
+                <button onclick="bar_button('blog-nwt')">BLOG [NWT]</button>
+                <button onclick="bar_button('blog-nvsp')">BLOG [NVSP]</button>
+                <button onclick="bar_button('pref-soft')">Preferred Softweres</button>
+            </div>
+        </div>
+        <!--
+        <div id="r-bar">
+            <div class="
+                childs-content-center-xy
+                childs-self-center--y-r
+            ">
+                <button onclick="bar_button('vote')">VOTE</button>
+                <button onclick="bar_button('downloads')">DOWNLOADS</button>
+            </div>
+        </div>
+        -->
+    </div>
+    <iframe src="home.html" id="page"></iframe>
+    <script src="script/bar.js"></script>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
-#bat-body {
+#bar_body {
+    background-color: #087393a0;
     position: fixed;
     top: 0px;
     height: 55px;
-    background-color: transparent;
     >* {
         height: 55px;
     }
