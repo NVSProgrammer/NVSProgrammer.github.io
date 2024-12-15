@@ -1,11 +1,74 @@
-.center-x {
-    display: grid;
-    margin-left: auto;
-    margin-right: auto;
+.center-self-x {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .corner-br {
     position: absolute;
     right: 0px;
     bottom: 0px;
+}
+
+.corner-bl {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+.childs-h-row-sf-left {
+    display: flex;
+    justify-items: start;
+}
+
+.childs-h-row-sf-right {
+    display: flex;
+    justify-items: end;
+}
+
+.childs-self-center-y-a>* {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.childs-self-center-y-r>* {
+    position: relative;
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+.childs-self-center--y-r>* {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.childs-counter-center-xy>* {
+    justify-content: center;
+}
+
+.childs-top-a>* {
+    position: absolute;
+    top: 0px;
+}
+
+.childs-left-a>* {
+    position: absolute;
+    left: 0px;
+}
+
+.childs-top-r>* {
+    position: relative;
+    top: 0px;
+}
+
+.childs-left-r>* {
+    position: relative;
+    left: 0px;
+}
+
+.top-r{
+    position: relative;
+    top: 0px;
 }
