@@ -1,5 +1,7 @@
-let page_html = document.getElementById("page");
+const wl = window.location;
+const page_html = document.getElementById("page");
 
+const relocate = path => wl.href = path;
 function bar_button(value_) {
     switch (value_) {
         case "home":
