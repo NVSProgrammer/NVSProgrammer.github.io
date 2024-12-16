@@ -25,5 +25,8 @@ function bar_button(value_) {
         case "pref-soft":
             page_html.src= "./pref_soft.html";
             break;
+        case "pghr":
+            wl.href = "https://github.com/NVSProgrammer/NVSProgrammer.github.io";
+            break;
     }
 }
