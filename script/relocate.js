@@ -1,17 +1,23 @@
 const wl = window.location;
 const page_html = document.getElementById("page");
 
-const relocate = path => wl.href = path;
+function relocate(path, p){
+    let target = window;
+    for(p < 1; p--;){
+        target = target.parent;
+    }
+    target.location.href = path;
+}
 function bar_button(value_) {
     switch (value_) {
         case "home":
             page_html.src = "./home.html";
             break;
         case "blog-nwt":
-            window.location.href = "https://nwt-project.blogspot.com/";
+            wl.href = "https://nwt-project.blogspot.com/";
             break;
         case "blog-nvsp":
-            window.location.href = "https://nvsprogrammer.blogspot.com/";
+            wl.href = "https://nvsprogrammer.blogspot.com/";
             break;
         case "vote":
             page_html.src = "./vote.html";
