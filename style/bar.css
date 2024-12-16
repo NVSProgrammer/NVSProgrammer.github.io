@@ -1,0 +1,31 @@
+#bar_body {
+    background-color: #087393a0;
+    position: fixed;
+    top: 0px;
+    height: 55px;
+    >* {
+        height: 55px;
+    }
+
+    #r-bar {
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        width: 50%;
+    }
+
+    #l-bar {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 50%;
+    }
+
+    #r-bar>*,
+    #l-bar>* {
+        position: relative;
+        margin-left: 5px;
+        font-size: 0.9em;
+        height: 50px;
+    }
+}
