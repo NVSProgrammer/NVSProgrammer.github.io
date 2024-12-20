@@ -2,10 +2,7 @@
     background: transparent;
     border: none;
     box-sizing: border-box;
-}
-
-body {
-    background-color: #0087a6;
+    color: #ffffff;
 }
 
 iframe {
@@ -18,9 +15,19 @@ button {
     margin: 0px;
 }
 
+#bar_body {
+    display: block;
+    margin-top: 10px;
+    border-radius: 7px;
+}
+
 #page {
     position: relative;
-    top: 50px;
     width: 99vw;
     height: 93vh;
+}
+
+#version {
+    color: #303030;
+    padding: 3px;
 }
