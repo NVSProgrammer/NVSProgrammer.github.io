@@ -19,8 +19,8 @@ function bar_button(value_) {
         case "blog-nvsp":
             wl.href = "https://nvsprogrammer.blogspot.com/";
             break;
-        case "vote":
-            page_html.src = "./vote.html";
+        case "votes":
+            page_html.src = "./votes.html";
             break;
         case "pref-soft":
             page_html.src= "./pref_soft.html";

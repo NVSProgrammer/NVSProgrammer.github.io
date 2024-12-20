@@ -8,26 +8,27 @@
     <link rel="icon" href="img/icons/nwt.png" />
     <meta charset="UTF-8">
     <title>NWT Page</title>
-    <style></style>
+    <style>
+        body {
+            background-color: #0087a6;
+            background-image: url("img/background/NWT-1.png");
+        }
+    </style>
 </head>
 
 <body>
     <div id="bar_body">
         <div id="bg"></div>
         <div id="l-bar">
-            <div class="
-                    childs-content-center-xy
-                    childs-self-center-y-r
-                ">
-                <button onclick="bar_button('home');">
-                    <img src="img/icons/nwt.png" width="40px" height="40px">
-                </button>
-                <button onclick="bar_button('home');">HOME</button>
-                <button onclick="bar_button('blog-nwt')">BLOG [NWT]</button>
-                <button onclick="bar_button('blog-nvsp')">BLOG [NVSP]</button>
-                <button onclick="bar_button('pref-soft')">Preferred Softweres</button>
-                <button onclick="bar_button('pghr')" class="corner-bl">Page Repository</button>
-            </div>
+            <button onclick="bar_button('home');" id="home-icon">
+                <img src="img/icons/nwt.png" width="40px" height="40px">
+            </button>
+            <button onclick="bar_button('home');">HOME</button>
+            <button onclick="bar_button('votes')">Votes</button>
+            <button onclick="bar_button('pref-soft')">Preferred Softweres</button>
+            <button onclick="bar_button('blog-nwt')">Blog [NWT]</button>
+            <button onclick="bar_button('blog-nvsp')">Blog [NVSP]</button>
+            <button onclick="bar_button('pghr')" class="corner-bl">Page Repository</button>
         </div>
         <!--
         <div id="r-bar">
@@ -44,6 +45,7 @@
     <br>
     <iframe src="home.html" id="page"></iframe>
     <script src="script/relocate.js"></script>
+    <p id="version" class="corner-bl">version: 1.0.0 bare-bones</p>
 </body>
 
 </html>
