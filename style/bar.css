@@ -7,19 +7,10 @@
         height: 55px;
     }
 
-    #r-bar {
-        right: 0px;
-    }
-
     #l-bar {
-        left: 0px;
-    }
-
-    #r-bar, #l-bar {
         margin-top: 7px;
         position: absolute;
         top: 0px;
-        width: 50%;
 
         button {
             position: relative;
