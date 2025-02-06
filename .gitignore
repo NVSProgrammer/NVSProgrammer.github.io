@@ -1,3 +1,5 @@
 notes.txt
 copy_to_lab.sh
 .vscode
+.lsp
+.clj-kondo
