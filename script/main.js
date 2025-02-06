@@ -59,9 +59,3 @@ function bar_button(value_) {
             break;
     }
 }
-
-document.addEventListener('keydown', function (event) {
-    if (
-        ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "KeyW", "KeyS", "KeyA", "KeyD"].includes(event.code)
-    ) window.location.href = "game.html";
-});
