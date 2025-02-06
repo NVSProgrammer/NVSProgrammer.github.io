@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style/game.css">
+    <title>Game</title>
+</head>
+
+<body>
+    <dev id="Grid">
+        <div id="Head"></div>
+    </dev>
+    <script src="script/game.js"></script>
+    <div id="Settings">
+        <h2>Settings</h2>
+        <lable for="smd">Snake Move Delay[ms]:</lable>
+        <input type="number" id="smd">
+        <br>
+        <lable for="nrod">New Random Object Delay[ms]:</lable>
+        <input type="number" id="nrod">
+        <br>
+        <lable for="ild">Input Lock Delay[ms]:</lable>
+        <input type="number" id="ild">
+        <br>
+        <label for="gud">Grid Update Delay[ms]:</label>
+        <input type="number" id="gud">
+        <br>
+        <p>Chance for Kill object:</p>
+        <label for="cfkf">From %:</label>
+        <input type="number" id="cfkf" min="0" max="100">
+        <br>
+        <label for="cfkt">To %:</label>
+        <input type="number" id="cfkt" min="0" max="100">
+        <br>
+        <p>Chance for Apple object:</p>
+        <label for="cfaf">From %:</label>
+        <input type="number" id="cfaf" min="0" max="100">
+        <br>
+        <label for="cfat">To %:</label>
+        <input type="number" id="cfat" min="0" max="100">
+        <br>
+        <p>Chance for Jump object:</p>
+        <label for="cfjf">From %:</label>
+        <input type="number" id="cfjf" min="0" max="100">
+        <br>
+        <label for="cfat">To %:</label>
+        <input type="number" id="cfjt" min="0" max="100">
+        <br>
+        <p>Chance for Wall object:</p>
+        <label for="cfwf">From %:</label>
+        <input type="number" id="cfwf" min="0" max="100">
+        <br>
+        <label for="cfwt">To %:</label>
+        <input type="number" id="cfwt" min="0" max="100">
+        <br><br>
+        <lable for="oag">Object after grow:</lable>
+        <input type="text" id="oag">
+        <br>
+        <label for="mjbk">Max jumps before Kill:</label>
+        <input type="number" id="mjbk">
+        <br>
+        <label for="sk">Self kill</label>
+        <input type="checkbox" id="sk">
+        <label for="jk">Jump kill</label>
+        <input type="checkbox" id="jk">
+        <br>
+        <button onclick="applySettings()">Apply</button>
+        <button onclick="calceSettings()">Calce</button>
+        <button onclick="Reset()">Reset</button>
+    </div>
+    <p id="Help">
+        ESC - go back to home | WASD / arrows to move | Space - pause | R - reset
+    </p>
+</body>
+
+</html>
