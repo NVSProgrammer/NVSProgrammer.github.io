@@ -193,7 +193,10 @@ function Reset() {
     Snake.Body = [];
     GameMap.Score.innerText = "0";
     pause = true;
-    setTimeout(function () { }, 100)
+    setTimeout(function () {
+        pause = false;
+        start();
+    }, 100)
 }
 
 function applySettings() {
