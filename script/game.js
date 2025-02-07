@@ -1,5 +1,6 @@
 const GameMap = {
     Grid: document.getElementById('Grid'),
+    Score: null,
     Size: {
         x: 5,
         y: 5
@@ -55,9 +56,8 @@ const Snake = {
             if (this.Body.length > 0) for (let i = 0; i < this.Body.length; i++) {
                 let x, y;
                 if (i == this.Body.length - 1) {
-                    let newXY = opositNewLocation(this.Head.x, this.Head.y, this.Head.d);
-                    x = newXY.x;
-                    y = newXY.y;
+                    x = this.Head.px;
+                    y = this.Head.py;
                 } else {
                     x = this.Body[i + 1].x;
                     y = this.Body[i + 1].y;
@@ -67,6 +67,8 @@ const Snake = {
                 this.Body[i].x = x;
                 this.Body[i].y = y;
             }
+            this.Head.px = this.Head.x;
+            this.Head.py = this.Head.y;
         } else {
             this.Head.x = px;
             this.Head.y = py;
@@ -128,6 +130,7 @@ const Snake = {
         GameMap.Grid.appendChild(newElement);
         this.Body.unshift({ x: x, y: y, e: newElement });
         if (Settings.OAGrow != "") newObject(Settings.OAGrowth);
+        GameMap.Score.innerText = parseInt(GameMap.Score.innerText) + 1;
     }
 };
 
@@ -170,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
     SElements.self_kill = document.getElementById("sk");
     SElements.jump_kill = document.getElementById("jk");
     SElements.mjbk = document.getElementById("mjbk");
+    GameMap.Score = document.getElementById("score");
     calceSettings();
     start();
 });
@@ -181,12 +185,13 @@ function start() {
 }
 
 function Reset() {
-    GameMap.Grid.innerHTML = '<div id="Head"></div>';
+    GameMap.Grid.innerHTML = '<div id="Head">></div>';
     Snake.Head.e = document.getElementById('Head');
     Snake.Head.x = 1;
     Snake.Head.y = 1;
     Snake.Head.d = "right";
     Snake.Body = [];
+    GameMap.Score.innerText = "0";
 }
 
 function applySettings() {
@@ -235,18 +240,22 @@ document.addEventListener('keydown', function (event) {
                 case "ArrowRight":
                 case "KeyD":
                     Snake.Head.d = "right";
+                    Snake.Head.e.innerText = ">";
                     break;
                 case "ArrowLeft":
                 case "KeyA":
                     Snake.Head.d = "left";
+                    Snake.Head.e.innerText = "<";
                     break;
                 case "ArrowUp":
                 case "KeyW":
                     Snake.Head.d = "up";
+                    Snake.Head.e.innerText = "/\\";
                     break;
                 case "ArrowDown":
                 case "KeyS":
                     Snake.Head.d = "down";
+                    Snake.Head.e.innerText = "\\/";
                     break;
             }
         }
@@ -346,7 +355,7 @@ function newLocation(x, y, d) {
 }
 
 function kill() {
-    alert("You died!");
+    alert("You died! Score: " + GameMap.Score.innerText);
     Reset();
 }
 

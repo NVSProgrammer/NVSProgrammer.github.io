@@ -8,10 +8,13 @@
 
 <body>
     <dev id="Grid">
-        <div id="Head"></div>
+        <div id="Head">></div>
     </dev>
     <script src="script/game.js"></script>
-    <div id="Settings">
+    <p class="score">
+        Score: <span id="score">0</span>
+    </p>
+    <div id="settings">
         <h2>Settings</h2>
         <lable for="smd">Snake Move Delay[ms]:</lable>
         <input type="number" id="smd">
@@ -69,7 +72,10 @@
         <button onclick="Reset()">Reset</button>
     </div>
     <p id="Help">
-        ESC - go back to home | WASD / arrows to move | Space - pause | R - reset
+        ESC - go back to home | WASD / arrows to move | Space - pause | R - reset | C - settings | Objects:
+        <span style="color: #ff0000;">Kill</span>,
+        <span style="color: #00ff00;">Apple</span>,
+        <span style="color: #0000ff;">Jump</span>
     </p>
 </body>
 
