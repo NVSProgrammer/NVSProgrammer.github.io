@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
     SElements.dSnakeMove = document.getElementById("smd");
     SElements.dInputLock = document.getElementById("ild");
     SElements.dNewObject = document.getElementById("nrod");
-    SElements.dGridUpdate = document.getElementById("gud");
     SElements.CfKillFrom = document.getElementById("cfkf");
     SElements.CfKillTo = document.getElementById("cfkt");
     SElements.CfAppleFrom = document.getElementById("cfaf");
@@ -180,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function start() {
-    update();
+    GameMap.update();
     randomNewObject();
     move();
 }
@@ -193,6 +192,8 @@ function Reset() {
     Snake.Head.d = "right";
     Snake.Body = [];
     GameMap.Score.innerText = "0";
+    pause = true;
+    setTimeout(function () { }, 100)
 }
 
 function applySettings() {
@@ -200,7 +201,6 @@ function applySettings() {
     Settings.dSnakeMove = parseInt(SElements.dSnakeMove.value);
     Settings.dInputLock = parseInt(SElements.dInputLock.value);
     Settings.dNewObject = parseInt(SElements.dNewObject.value);
-    Settings.dGridUpdate = parseInt(SElements.dGridUpdate.value);
     Settings.CfKill = [parseInt(SElements.CfKillFrom.value), parseInt(SElements.CfKillTo.value)];
     Settings.CfApple = [parseInt(SElements.CfAppleFrom.value), parseInt(SElements.CfAppleTo.value)];
     Settings.CfJump = [parseInt(SElements.CfJumpFrom.value), parseInt(SElements.CfJumpTo.value)];
@@ -216,7 +216,6 @@ function calceSettings() {
     SElements.dSnakeMove.value = Settings.dSnakeMove;
     SElements.dInputLock.value = Settings.dInputLock;
     SElements.dNewObject.value = Settings.dNewObject;
-    SElements.dGridUpdate.value = Settings.dGridUpdate;
     // from "SElements.CfKillFrom.value =" is auto fill by Tabnine
     SElements.CfKillFrom.value = Settings.CfKill[0];
     SElements.CfKillTo.value = Settings.CfKill[1];
@@ -284,13 +283,6 @@ function move() {
     if (!pause) {
         Snake.move();
         setTimeout(move, Settings.dSnakeMove);
-    }
-}
-
-function update() {
-    if (!pause) {
-        GameMap.update();
-        setTimeout(update, Settings.dGridUpdate);
     }
 }
 
