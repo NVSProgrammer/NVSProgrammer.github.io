@@ -174,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
     SElements.jump_kill = document.getElementById("jk");
     SElements.mjbk = document.getElementById("mjbk");
     GameMap.Score = document.getElementById("score");
+    SElements.e = document.getElementById("settings");
     calceSettings();
     start();
 });
@@ -205,9 +206,8 @@ function applySettings() {
     Settings.CfJump = [parseInt(SElements.CfJumpFrom.value), parseInt(SElements.CfJumpTo.value)];
     Settings.CfWall = [parseInt(SElements.CfWallFrom.value), parseInt(SElements.CfWallTo.value)];
     // end
-    if (["wall", "kill", "snake", "jump"].includes(SElements.OAGrow.value)) {
-        Settings.OAGrow = SElements.OAGrow.value;
-    }
+    if (["wall", "kill", "snake", "jump", "apple"].includes(SElements.OAGrow.value)) Settings.OAGrow = SElements.OAGrow.value;
+    else SElements.OAGrow.value = Settings.OAGrow;
     Settings.self_kill = SElements.self_kill.checked;
     Settings.jump_kill = SElements.jump_kill.checked;
     Settings.mjbk = parseInt(SElements.mjbk.value);
@@ -269,6 +269,9 @@ document.addEventListener('keydown', function (event) {
                 break;
             case "KeyR":
                 Reset();
+            case "KeyC":
+                if (SElements.e.style.visibility == "hidden") SElements.e.style.visibility = "visible";
+                else SElements.e.style.visibility = "hidden";
         }
         locked = true;
         setTimeout(locked = false, Settings.dInputLock);
