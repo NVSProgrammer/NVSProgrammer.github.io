@@ -269,9 +269,11 @@ document.addEventListener('keydown', function (event) {
                 break;
             case "KeyR":
                 Reset();
+                break
             case "KeyC":
                 if (SElements.e.style.visibility == "hidden") SElements.e.style.visibility = "visible";
                 else SElements.e.style.visibility = "hidden";
+                break;
         }
         locked = true;
         setTimeout(locked = false, Settings.dInputLock);
