@@ -129,7 +129,7 @@ const Snake = {
         newElement.style.gridRow = y.toString();
         GameMap.Grid.appendChild(newElement);
         this.Body.unshift({ x: x, y: y, e: newElement });
-        if (Settings.OAGrow != "") newObject(Settings.OAGrowth);
+        if (Settings.OAGrow != "") newObject(Settings.OAGrow);
         GameMap.Score.innerText = parseInt(GameMap.Score.innerText) + 1;
     }
 };
