@@ -200,7 +200,6 @@ function Reset() {
 }
 
 function applySettings() {
-    // from here is auto fill by Tabnine
     Settings.dSnakeMove = parseInt(SElements.dSnakeMove.value);
     Settings.dInputLock = parseInt(SElements.dInputLock.value);
     Settings.dNewObject = parseInt(SElements.dNewObject.value);
@@ -208,7 +207,6 @@ function applySettings() {
     Settings.CfApple = [parseInt(SElements.CfAppleFrom.value), parseInt(SElements.CfAppleTo.value)];
     Settings.CfJump = [parseInt(SElements.CfJumpFrom.value), parseInt(SElements.CfJumpTo.value)];
     Settings.CfWall = [parseInt(SElements.CfWallFrom.value), parseInt(SElements.CfWallTo.value)];
-    // end
     if (["wall", "kill", "snake", "jump", "apple"].includes(SElements.OAGrow.value)) Settings.OAGrow = SElements.OAGrow.value;
     else SElements.OAGrow.value = Settings.OAGrow;
     Settings.self_kill = SElements.self_kill.checked;
@@ -219,7 +217,6 @@ function calceSettings() {
     SElements.dSnakeMove.value = Settings.dSnakeMove;
     SElements.dInputLock.value = Settings.dInputLock;
     SElements.dNewObject.value = Settings.dNewObject;
-    // from "SElements.CfKillFrom.value =" is auto fill by Tabnine
     SElements.CfKillFrom.value = Settings.CfKill[0];
     SElements.CfKillTo.value = Settings.CfKill[1];
     SElements.CfAppleFrom.value = Settings.CfApple[0];
@@ -229,7 +226,6 @@ function calceSettings() {
     SElements.CfWallFrom.value = Settings.CfWall[0];
     SElements.CfWallTo.value = Settings.CfWall[1];
     SElements.OAGrow.value = Settings.OAGrow;
-    // end
     SElements.self_kill.checked = Settings.self_kill;
     SElements.jump_kill.checked = Settings.jump_kill;
     SElements.mjbk.value = Settings.mjbk;
