@@ -6,7 +6,6 @@ const GameMap = {
         y: 5
     },
     update: function () {
-        // IDK how to get the number of columns and rows
         // This is from StackOverflow https://stackoverflow.com/questions/55204205/a-way-to-count-columns-in-a-responsive-grid
         const gridComputedStyle = window.getComputedStyle(this.Grid);
 
