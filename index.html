@@ -36,11 +36,15 @@
     </div>
     <br>
     <iframe src="home.html" id="page"></iframe>
-    <script src="script/main.js">
+    <script src="script/main.js"></script>
+    <!-- If the script tag have src, the script in it wont work -->
+    <script>
         document.addEventListener('keydown', function (event) {
             if (
                 ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "KeyW", "KeyS", "KeyA", "KeyD"].includes(event.code)
-            ) window.location.href = "game.html";
+            ) {
+                window.location.href = "game.html";
+            }
         });
     </script>
     <p id="version" class="corner-bl">version: 1.2.0 test_0_ag</p>
