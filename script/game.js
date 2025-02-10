@@ -201,7 +201,7 @@ function Reset() {
     setTimeout(function () {
         pause = false;
         start();
-    }, 100)
+    }, d)
 }
 
 function applySettings() {
