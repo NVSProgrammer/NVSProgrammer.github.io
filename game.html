@@ -16,13 +16,13 @@
     </p>
     <div id="settings">
         <h2>Settings</h2>
-        <lable for="smd">Snake Move Delay[ms]:</lable>
+        <label for="smd">Snake Move Delay[ms]:</label>
         <input type="number" id="smd">
         <br>
-        <lable for="nrod">New Random Object Delay[ms]:</lable>
+        <label for="nrod">New Random Object Delay[ms]:</label>
         <input type="number" id="nrod">
         <br>
-        <lable for="ild">Input Lock Delay[ms]:</lable>
+        <label for="ild">Input Lock Delay[ms]:</label>
         <input type="number" id="ild">
         <br>
         <p>Chance for Kill object:</p>
@@ -53,7 +53,7 @@
         <label for="cfwt">To %:</label>
         <input type="number" id="cfwt" min="0" max="100">
         <br><br>
-        <lable for="oag">Object after grow:</lable>
+        <label for="oag">Object after grow:</label>
         <input type="text" id="oag">
         <br>
         <label for="mjbk">Max jumps before Kill:</label>
@@ -72,11 +72,38 @@
         <label for="crdc">Custom Start Dilay</label>
         <br>
         <button onclick="applySettings()">Apply</button>
-        <button onclick="calceSettings()">Calce</button>
+        <button onclick="cancelSettings()">Cancel</button>
         <button onclick="Reset()">Reset</button>
     </div>
+    <div id="debug">
+        <h2>Debug:</h2>
+        <h3>Grid:</h3>
+        <p>max x: <span id="gx">1</span></p>
+        <p>max y: <span id="gy">1</span></p>
+        <h3>Snake:</h3>
+        <p>move: <span class="px" id="sm"></span></p> <!--snake move-->
+        <p>grow: <span class="px" id="sg"></span></p> <!--snake grow-->
+        <p>drection: <span id="d">right</span></p>
+        <p>x: <span id="sx">1</span></p>
+        <p>y: <span id="sy">1</span></p>
+        <p>last object: <span class="px" id="object"></span></p> <!--with color-->
+        <p>status: <span id="status">0</span></p>
+        <h3>Input Locked: <span class="px" id="il_"></span></h3> <!--input unlocked-->
+        <h3>New Object:</h3>
+        <p>spawn: <span class="px" id="nos"></span></p> <!--new object spawn-->
+        <p>last object: <span class="px" id="no"></span></p> <!--new object with color-->
+        <p>last x: <span id="ox">?</span></p> <!--ox - object x-->
+        <p>last y: <span id="oy">?</span></p> <!--oy - object y-->
+        <br>
+        <br>
+        <label for="so">Visual signal off[ms]</label>
+        <input type="number" id="so">
+        <br>
+        <button onclick="aso">Apply</button>
+        <button onclick="ces">Cancel</button>
+    </div>
     <p id="Help">
-        ESC - go back to home | WASD / arrows to move | Space - pause | R - reset | C - settings | Objects:
+        ESC - go back to home | WASD / arrows to move | Space - pause | R - reset | C - settings | B - debug | Objects:
         <span style="color: #ff0000;">Kill</span>,
         <span style="color: #00ff00;">Apple</span>,
         <span style="color: #0000ff;">Jump</span>
