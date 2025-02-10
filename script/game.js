@@ -187,7 +187,7 @@ function start() {
 }
 
 function Reset() {
-    let d;
+    let d = 100;
     if(Settings.crdc) d = Settings.crd;
     else d = max(Settings.dNewObject, Settings.dInputLock, Settings.dSnakeMove);
     GameMap.Grid.innerHTML = '<div id="Head">></div>';
