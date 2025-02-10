@@ -79,3 +79,22 @@ button {
     left: 10px;
     font-size: 24px;
 }
+
+#debug {
+    visibility: hidden;
+    position: fixed;
+    top: 5em;
+    left: 10px;
+    background-color: #00ffff1a;
+    padding: 10px;
+    overflow: scroll;
+    height: 80%;
+    width: max-content;
+}
+
+.px {
+    display: inline-flex;
+    height: 16px;
+    width: 16px;
+    border: 1px solid #ffffff34;
+}
