@@ -137,7 +137,6 @@ const Settings = {
     dSnakeMove: 300,
     dInputLock: 200,
     dNewObject: 700,
-    dGridUpdate: 1000,
     CfKill: [0, 20],
     CfApple: [50, 75],
     CfJump: [76, 83],
@@ -145,7 +144,9 @@ const Settings = {
     OAGrow: "wall",
     self_kill: true,
     jump_kill: true,
-    mjbk: 5
+    mjbk: 5,
+    crdc: false,
+    crd: 100
 }
 
 const SElements = {
@@ -171,6 +172,8 @@ document.addEventListener('DOMContentLoaded', function () {
     SElements.self_kill = document.getElementById("sk");
     SElements.jump_kill = document.getElementById("jk");
     SElements.mjbk = document.getElementById("mjbk");
+    SElements.crd = document.getElementById("crd");
+    SElements.crdc = document.getElementById("crdc");
     GameMap.Score = document.getElementById("score");
     SElements.e = document.getElementById("settings");
     calceSettings();
@@ -184,6 +187,9 @@ function start() {
 }
 
 function Reset() {
+    let d;
+    if(Settings.crdc) d = Settings.crd;
+    else d = max(Settings.dNewObject, Settings.dInputLock, Settings.dSnakeMove);
     GameMap.Grid.innerHTML = '<div id="Head">></div>';
     Snake.Head.e = document.getElementById('Head');
     Snake.Head.x = 1;
@@ -202,6 +208,7 @@ function applySettings() {
     Settings.dSnakeMove = parseInt(SElements.dSnakeMove.value);
     Settings.dInputLock = parseInt(SElements.dInputLock.value);
     Settings.dNewObject = parseInt(SElements.dNewObject.value);
+    Settings.crd = parseInt(SElements.crd.value);
     Settings.CfKill = [parseInt(SElements.CfKillFrom.value), parseInt(SElements.CfKillTo.value)];
     Settings.CfApple = [parseInt(SElements.CfAppleFrom.value), parseInt(SElements.CfAppleTo.value)];
     Settings.CfJump = [parseInt(SElements.CfJumpFrom.value), parseInt(SElements.CfJumpTo.value)];
@@ -210,6 +217,7 @@ function applySettings() {
     else SElements.OAGrow.value = Settings.OAGrow;
     Settings.self_kill = SElements.self_kill.checked;
     Settings.jump_kill = SElements.jump_kill.checked;
+    Settings.crdc = SElements.crdc.checked;
     Settings.mjbk = parseInt(SElements.mjbk.value);
 }
 function calceSettings() {
@@ -227,6 +235,8 @@ function calceSettings() {
     SElements.OAGrow.value = Settings.OAGrow;
     SElements.self_kill.checked = Settings.self_kill;
     SElements.jump_kill.checked = Settings.jump_kill;
+    SElements.crdc.checked = Settings.crdc;
+    SElements.crd.value = Settings.crd;
     SElements.mjbk.value = Settings.mjbk;
 }
 
