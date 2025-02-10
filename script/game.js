@@ -1,9 +1,19 @@
+var pxon = "#ffffff30";
+var pxoff = "#00000000";
+
 const GameMap = {
     Grid: document.getElementById('Grid'),
     Score: null,
     Size: {
         x: 5,
         y: 5
+    },
+    Colors: {
+        "snake": "#aaaaaa",
+        "apple": "#00ff00",
+        "kill": "#ff0000",
+        "wall": "#555555",
+        "jump": "#0000ff"
     },
     update: function () {
         // This is from StackOverflow https://stackoverflow.com/questions/55204205/a-way-to-count-columns-in-a-responsive-grid
@@ -17,6 +27,9 @@ const GameMap = {
 
         this.Size.x = gridColumnCount;
         this.Size.y = gridRowCount;
+
+        debug.gx.innerText = this.Size.x;
+        debug.gy.innerText = this.Size.y;
     }
 };
 
@@ -28,12 +41,16 @@ const Snake = {
         e: document.getElementById("Head"),
         x: 1,
         y: 1,
-        d: "right"
+        d: "right",
+        px: 1,
+        py: 1
     },
 
     Body: [],
 
     move: function () {
+        debug.sm.style.backgroundColor = pxon;
+        setTimeout(function () { debug.sm.style.backgroundColor = pxoff; }, Settings.so);
         this.status = 0;
         const px = this.Head.x;
         const py = this.Head.y;
@@ -42,12 +59,16 @@ const Snake = {
         this.Head.y = newXY.y;
         let object = getObject(this.Head.x, this.Head.y);
         if (object) {
-            if (object.className == "wall") this.status = 1;
+            if (object.className == "wall") {
+                this.status = 1;
+                debug.so.style.backgroundColor = GameMap.Colors.wall;
+            }
             else this.interact(object);
         } else {
             this.status = 0;
             this.jumpCount = 0;
         }
+        this.debugS();
         if (this.status != 1) {
             this.status = 0;
             this.Head.e.style.gridColumn = this.Head.x.toString();
@@ -63,6 +84,10 @@ const Snake = {
                 }
                 this.Body[i].e.style.gridColumn = x.toString();
                 this.Body[i].e.style.gridRow = y.toString();
+                if (i != this.Body.length - 1) {
+                    this.Body[i + 1].px = x;
+                    this.Body[i + 1].py = y;
+                }
                 this.Body[i].x = x;
                 this.Body[i].y = y;
             }
@@ -72,10 +97,14 @@ const Snake = {
             this.Head.x = px;
             this.Head.y = py;
         }
+        debug.sx.innerText = Snake.Head.x;
+        debug.sy.innerText = Snake.Head.y;
+        this.debugS();
     },
 
     interact: function (object) {
         d = this.Head.d;
+        this.debugS();
         if (this.jumpCount > Settings.mjbk && Settings.jump_kill) {
             this.status = -2;
             kill();
@@ -83,18 +112,26 @@ const Snake = {
         switch (object.className) {
             case "snake":
                 if (this.status == 2 || !Settings.self_kill) break;
+                this.status = -3;
+                debug.so.style.backgroundColor = GameMap.Colors["snake"];
+                kill();
+                break;
             case "kill":
                 this.status = -1;
+                debug.so.style.backgroundColor = GameMap.Colors["kill"];
                 kill();
                 break;
             case "apple":
                 this.status = 3;
                 this.jumpCount = 0;
+                debug.so.style.backgroundColor = GameMap.Colors["apple"];
                 this.grow();
                 object.remove();
                 break;
             case "jump":
                 this.status = 2;
+                this.debugS();
+                debug.so.style.backgroundColor = GameMap.Colors["jump"];
                 do {
                     newXY = newLocation(this.Head.x, this.Head.y, d);
                     object = getObject(newXY.x, newXY.y);
@@ -108,28 +145,33 @@ const Snake = {
     },
 
     grow: function () {
+        debug.sg.style.backgroundColor = pxon;
+        setTimeout(function () { debug.sg.style.backgroundColor = pxoff; }, Settings.so);
         let x, y;
         if (this.Body.length > 0) {
             const last = this.Body[this.Body.length - 1];
-            x = last.x;
-            y = last.y;
-            d = last.d;
+            x = last.px;
+            y = last.py;
         } else {
-            x = this.Head.x;
-            y = this.Head.y;
-            d = this.Head.d;
+            x = this.Head.px;
+            y = this.Head.py;
         }
-        let newXY = opositNewLocation(x, y, d);
-        x = newXY.x;
-        y = newXY.y;
         const newElement = document.createElement("div");
         newElement.className = "snake";
         newElement.style.gridColumn = x.toString();
         newElement.style.gridRow = y.toString();
         GameMap.Grid.appendChild(newElement);
-        this.Body.unshift({ x: x, y: y, e: newElement });
-        if (Settings.OAGrow != "") newObject(Settings.OAGrow);
+        this.Body.unshift({ px: x, py: y, x: x, y: y, e: newElement });
+        if (Settings.OAGrow != "" && this.status != 4) newObject(Settings.OAGrow);
         GameMap.Score.innerText = parseInt(GameMap.Score.innerText) + 1;
+    },
+    debugLocked: false,
+    debugS: function () {
+        if (!this.debugLocked) {
+            this.debugLocked = true;
+            debug.ss.innerText = Snake.status;
+            setTimeout(function () { this.debugLocked = false; }, Settings.so);
+        }
     }
 };
 
@@ -146,11 +188,12 @@ const Settings = {
     jump_kill: true,
     mjbk: 5,
     crdc: false,
-    crd: 100
+    crd: 100,
+    so: 300
 }
 
-const SElements = {
-}
+const SElements = {}
+const debug = {}
 
 let locked = false;
 let pause = false;
@@ -176,9 +219,35 @@ document.addEventListener('DOMContentLoaded', function () {
     SElements.crdc = document.getElementById("crdc");
     GameMap.Score = document.getElementById("score");
     SElements.e = document.getElementById("settings");
-    calceSettings();
+
+    // debug elements
+    SElements.so = document.getElementById("so");
+
+    debug.e = document.getElementById("debug");
+    debug.gx = document.getElementById("gx");
+    debug.gy = document.getElementById("gy");
+    debug.sm = document.getElementById("sm");
+    debug.sg = document.getElementById("sg");
+    debug.sd = document.getElementById("d");
+    debug.sx = document.getElementById("sx");
+    debug.sy = document.getElementById("sy");
+    debug.so = document.getElementById("object");
+    debug.ss = document.getElementById("status");
+
+    debug.il_ = document.getElementById("il_");
+
+    debug.no = document.getElementById("no");
+    debug.ox = document.getElementById("ox");
+    debug.oy = document.getElementById("oy");
+    debug.nos = document.getElementById("nos");
+
+    cancelSettings();
+    cso();
     start();
 });
+
+function aso() { Settings.so = parseInt(SElements.so.value); }
+function cso() { SElements.value = Settings.so; }
 
 function start() {
     GameMap.update();
@@ -188,8 +257,11 @@ function start() {
 
 function Reset() {
     let d = 100;
-    if(Settings.crdc) d = Settings.crd;
+
+    // restart delay
+    if (Settings.crdc) d = Settings.crd;
     else d = Math.max(Settings.dNewObject, Settings.dInputLock, Settings.dSnakeMove);
+
     GameMap.Grid.innerHTML = '<div id="Head">></div>';
     Snake.Head.e = document.getElementById('Head');
     Snake.Head.x = 1;
@@ -213,14 +285,14 @@ function applySettings() {
     Settings.CfApple = [parseInt(SElements.CfAppleFrom.value), parseInt(SElements.CfAppleTo.value)];
     Settings.CfJump = [parseInt(SElements.CfJumpFrom.value), parseInt(SElements.CfJumpTo.value)];
     Settings.CfWall = [parseInt(SElements.CfWallFrom.value), parseInt(SElements.CfWallTo.value)];
-    if (["wall", "kill", "snake", "jump", "apple"].includes(SElements.OAGrow.value)) Settings.OAGrow = SElements.OAGrow.value;
+    if (["wall", "kill", "d-snake", "a-snake", "jump", "apple"].includes(SElements.OAGrow.value)) Settings.OAGrow = SElements.OAGrow.value;
     else SElements.OAGrow.value = Settings.OAGrow;
     Settings.self_kill = SElements.self_kill.checked;
     Settings.jump_kill = SElements.jump_kill.checked;
     Settings.crdc = SElements.crdc.checked;
     Settings.mjbk = parseInt(SElements.mjbk.value);
 }
-function calceSettings() {
+function cancelSettings() {
     SElements.dSnakeMove.value = Settings.dSnakeMove;
     SElements.dInputLock.value = Settings.dInputLock;
     SElements.dNewObject.value = Settings.dNewObject;
@@ -242,6 +314,7 @@ function calceSettings() {
 
 document.addEventListener('keydown', function (event) {
     if (!locked) {
+        debug.il_.style.backgroundColor = pxon;
         if (!pause) {
             switch (event.code) {
                 case "ArrowRight":
@@ -265,6 +338,8 @@ document.addEventListener('keydown', function (event) {
                     Snake.Head.e.innerText = "\\/";
                     break;
             }
+            debug.sd.innerText = Snake.Head.d;
+            locked = true;
         }
         switch (event.code) {
             case "Escape":
@@ -281,9 +356,15 @@ document.addEventListener('keydown', function (event) {
                 if (SElements.e.style.visibility == "hidden") SElements.e.style.visibility = "visible";
                 else SElements.e.style.visibility = "hidden";
                 break;
+            case "KeyB":
+                if (debug.e.style.visibility == "hidden") debug.e.style.visibility = "visible";
+                else debug.e.style.visibility = "hidden";
+                break;
         }
-        locked = true;
-        setTimeout(locked = false, Settings.dInputLock);
+        setTimeout(function () {
+            locked = false;
+            debug.il_.style.backgroundColor = pxoff;
+        }, Settings.dInputLock);
     }
 });
 
@@ -309,6 +390,16 @@ function randomNewObject() {
 
 function newObject(class_) {
     let rx, ry;
+    if (class_ == "d-snake") class_ = "snake";
+    else if (class_ == "a-snake") {
+        Snake.status = 4;
+        Snake.grow();
+        Snake.status = 0;
+        return true;
+    }
+    debug.nos.style.backgroundColor = pxon;
+    setTimeout(function () { debug.nos.style.backgroundColor = pxoff; }, Settings.so);
+    debug.no.style.backgroundColor = GameMap.Colors[class_];
     while (true) {
         rx = getRandomInt(1, GameMap.Size.x);
         ry = getRandomInt(1, GameMap.Size.y);
@@ -318,6 +409,8 @@ function newObject(class_) {
             newElement.style.gridColumn = rx.toString();
             newElement.style.gridRow = ry.toString();
             GameMap.Grid.appendChild(newElement);
+            debug.ox.innerText = rx;
+            debug.oy.innerText = ry;
             break;
         }
     }
@@ -360,28 +453,7 @@ function newLocation(x, y, d) {
 }
 
 function kill() {
+    Snake.debugS();
     alert("You died! Score: " + GameMap.Score.innerText);
     Reset();
-}
-
-function opositNewLocation(x, y, d) {
-    switch (d) {
-        case "right":
-            x--;
-            break;
-        case "left":
-            x++;
-            break;
-        case "up":
-            y++;
-            break;
-        case "down":
-            y--;
-            break;
-    }
-    if (x < 1) x = GameMap.Size.x;
-    if (y < 1) y = GameMap.Size.y;
-    if (x > GameMap.Size.x) x = 1;
-    if (y > GameMap.Size.y) y = 1;
-    return { x: x, y: y };
 }
