@@ -189,7 +189,7 @@ function start() {
 function Reset() {
     let d = 100;
     if(Settings.crdc) d = Settings.crd;
-    else d = max(Settings.dNewObject, Settings.dInputLock, Settings.dSnakeMove);
+    else d = Math.max(Settings.dNewObject, Settings.dInputLock, Settings.dSnakeMove);
     GameMap.Grid.innerHTML = '<div id="Head">></div>';
     Snake.Head.e = document.getElementById('Head');
     Snake.Head.x = 1;
