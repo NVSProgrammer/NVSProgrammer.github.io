@@ -1,0 +1,35 @@
+{
+    "role": "installtion",
+    "identifier": "NWTIC_!0-index",
+    "userend": {
+        "check-file": "::server/installtion.check.nwtic.cfg",
+        "dirs": [
+            {
+                "name": "server",
+                "dir": "!%Web-Server"
+            }
+        ]
+    },
+    "server-end": {
+        "API": {
+            "tool": "github-aip.exe",
+            "values": {
+                "user": "NVSProgrammer",
+                "repo": "NVSProgrammer.github.io"
+            }
+        },
+        "files&dirs": {
+            "copy": [
+                {
+                    "copy": "/",
+                    "to": "::server/"
+                }
+            ],
+            "ignore": [
+                "/install.index.json",
+                "/.gitignore",
+                ".README.md"
+            ]
+        }
+    }
+}
