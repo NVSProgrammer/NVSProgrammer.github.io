@@ -6,6 +6,13 @@
     color: #ffffff;
 }
 
+body {
+    background-color: #0087a6;
+    background-image: url("../img/background/NWT-1.png");
+    background-size: cover;
+    background-position: center;
+}
+
 iframe {
     padding: 0;
     margin: 0;
@@ -14,6 +21,19 @@ iframe {
 button {
     padding: 1px;
     margin: 0px;
+}
+
+#share {
+    background-image: url("../img/icons/share.png");
+    background-color: #55555555;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    position: fixed;
+    width: 43px;
+    height: 43px;
+    bottom: 10px;
+    right: 10px;
 }
 
 #bar_body {
