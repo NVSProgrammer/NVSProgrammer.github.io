@@ -29,7 +29,7 @@ share_button.onclick = async function () {
     try {
         await navigator.clipboard.writeText(link);
         share_button.style.backgroundImage = "url('./img/icons/success.png')";
-        share_button.innerText = "Codied";
+        share_button.innerText = "Copied";
     } catch (e) {
         share_button.style.backgroundImage = "url('./img/icons/fail.png')";
         console.error(e);
