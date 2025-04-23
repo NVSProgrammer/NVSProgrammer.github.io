@@ -32,15 +32,18 @@ body {
 
 .apple {
     background-color: #00ff00;
+    content: "@";
 }
 
 .wall {
     background-color: #555555;
     border: 3px solid #777777;
+    content: "#";
 }
 
 .kill {
     background-color: #ff0000;
+    content: "X";
 }
 
 .jump {
