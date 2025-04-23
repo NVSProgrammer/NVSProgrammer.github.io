@@ -284,6 +284,11 @@ const KillHead = {
             x = this.Head.px;
             y = this.Head.py;
         }
+        const newElement = document.createElement("div");
+        newElement.className = "kill";
+        newElement.style.gridColumn = x.toString();
+        newElement.style.gridRow = y.toString();
+        GameMap.Grid.appendChild(newElement);
         this.Body.unshift({ px: x, py: y, x: x, y: y, e: newElement });
         if (Settings.OAGrow != "" && this.status != 4) newObject(Settings.OAGrow);
         GameMap.Score.innerText = parseInt(GameMap.Score.innerText) + 1;
