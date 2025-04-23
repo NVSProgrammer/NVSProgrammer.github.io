@@ -181,8 +181,8 @@ const KillHead = {
 
     Head: {
         e: document.getElementById("KillHead"),
-        x: 1,
-        y: 1,
+        x: 5,
+        y: 10,
         d: "right",
         px: 1,
         py: 1
@@ -492,6 +492,10 @@ function move() {
     if (!pause) {
         Snake.move();
         KillHead.move();
+
+        let randomNumber = getRandomInt(1, 100);
+        if(randomNumber > 70) KillHead.grow();
+
         setTimeout(move, Settings.dSnakeMove);
     }
 }
