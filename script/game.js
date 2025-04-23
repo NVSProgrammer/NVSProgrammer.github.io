@@ -290,9 +290,6 @@ const KillHead = {
         newElement.style.gridRow = y.toString();
         GameMap.Grid.appendChild(newElement);
         this.Body.unshift({ px: x, py: y, x: x, y: y, e: newElement });
-        if (Settings.OAGrow != "" && this.status != 4) newObject(Settings.OAGrow);
-        GameMap.Score.innerText = parseInt(GameMap.Score.innerText) + 1;
-    }
 };
 
 const Settings = {
