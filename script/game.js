@@ -175,6 +175,121 @@ const Snake = {
     }
 };
 
+const KillHead = {
+    status: 0,
+    jumpCount: 0,
+
+    Head: {
+        e: document.getElementById("KillHead"),
+        x: 1,
+        y: 1,
+        d: "right",
+        px: 1,
+        py: 1
+    },
+
+    Body: [],
+
+    move: function () {
+        this.status = 0;
+        const px = this.Head.x;
+        const py = this.Head.y;
+        let newXY = newLocation(this.Head.x, this.Head.y, this.Head.d);
+        this.Head.x = newXY.x;
+        this.Head.y = newXY.y;
+        let object = getObject(this.Head.x, this.Head.y);
+        if (object) {
+            if (object.className == "wall") {
+                this.status = 1;
+            }
+            else this.interact(object);
+        } else {
+            this.status = 0;
+            this.jumpCount = 0;
+        }
+        if (this.status != 1) {
+            this.status = 0;
+            this.Head.e.style.gridColumn = this.Head.x.toString();
+            this.Head.e.style.gridRow = this.Head.y.toString();
+            if (this.Body.length > 0) for (let i = 0; i < this.Body.length; i++) {
+                let x, y;
+                if (i == this.Body.length - 1) {
+                    x = this.Head.px * 2;
+                    y = this.Head.py * 2;
+                } else {
+                    x = this.Body[i + 1].x * 2;
+                    y = this.Body[i + 1].y * 2;
+                }
+                this.Body[i].e.style.gridColumn = x.toString();
+                this.Body[i].e.style.gridRow = y.toString();
+                if (i != this.Body.length - 1) {
+                    this.Body[i + 1].px = x;
+                    this.Body[i + 1].py = y;
+                }
+                this.Body[i].x = x;
+                this.Body[i].y = y;
+            }
+            this.Head.px = this.Head.x;
+            this.Head.py = this.Head.y;
+        } else {
+            this.Head.x = px;
+            this.Head.y = py;
+        }
+        let randomNumber = getRandomInt(1, 100);
+        if(randomNumber >= 0 && randomNumber < 25) this.Head.d = "left";
+        if(randomNumber >= 25 && randomNumber < 50) this.Head.d = "right";
+        if(randomNumber >= 50 && randomNumber < 75) this.Head.d = "up";
+        if(randomNumber >= 75 && randomNumber <= 100) this.Head.d = "down";
+    },
+
+    interact: function (object) {
+        d = this.Head.d;
+        if (this.jumpCount > Settings.mjbk && Settings.jump_kill) {
+            this.status = -2;
+            kill();
+        }
+        switch (object.className) {
+            case "kill":
+                this.status = -1;
+                kill();
+                break;
+            case "apple":
+                this.status = 3;
+                this.jumpCount = 0;
+                this.grow();
+                object.remove();
+                break;
+            case "jump":
+                this.status = 2;
+                do {
+                    newXY = newLocation(this.Head.x, this.Head.y, d);
+                    object = getObject(newXY.x, newXY.y);
+                    this.Head.x = newXY.x;
+                    this.Head.y = newXY.y;
+                    if (object) this.interact(object);
+                } while (object && (object.className == "wall" || object.className == "snake"));
+                this.jumpCount++;
+                break;
+        }
+    },
+
+    grow: function () {
+        setTimeout(function () { debug.sg.style.backgroundColor = pxoff; }, Settings.so);
+        let x, y;
+        if (this.Body.length > 0) {
+            const last = this.Body[this.Body.length - 1];
+            x = last.px;
+            y = last.py;
+        } else {
+            x = this.Head.px;
+            y = this.Head.py;
+        }
+        this.Body.unshift({ px: x, py: y, x: x, y: y, e: newElement });
+        if (Settings.OAGrow != "" && this.status != 4) newObject(Settings.OAGrow);
+        GameMap.Score.innerText = parseInt(GameMap.Score.innerText) + 1;
+    }
+};
+
 const Settings = {
     dSnakeMove: 300,
     dInputLock: 200,

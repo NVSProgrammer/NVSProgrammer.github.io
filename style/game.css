@@ -55,6 +55,13 @@ body {
     text-align: center;
 }
 
+#KillHead {
+    background-color: #999999;
+    text-align: center;
+    grid-row: 10;
+    grid-column: 5;
+}
+
 #settings {
     overflow: scroll;
     background-color: #aaffff1a;
