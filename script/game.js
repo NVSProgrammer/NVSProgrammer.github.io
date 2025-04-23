@@ -491,6 +491,7 @@ document.addEventListener('keydown', function (event) {
 function move() {
     if (!pause) {
         Snake.move();
+        KillHead.move();
         setTimeout(move, Settings.dSnakeMove);
     }
 }
