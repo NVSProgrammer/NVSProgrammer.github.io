@@ -249,10 +249,6 @@ const KillHead = {
             kill();
         }
         switch (object.className) {
-            case "kill":
-                this.status = -1;
-                kill();
-                break;
             case "apple":
                 this.status = 3;
                 this.jumpCount = 0;
@@ -385,6 +381,12 @@ function Reset() {
     Snake.Head.y = 1;
     Snake.Head.d = "right";
     Snake.Body = [];
+GameMap.Grid.innerHTML = '<div id="KillHead">></div>';
+    KillHead.Head.e = document.getElementById('KillHead');
+    KillHead.Head.x = 5;
+    KillHead.Head.y = 10;
+    KillHead.Head.d = "right";
+    KillHead.Body = [];
     GameMap.Score.innerText = "0";
     pause = true;
     setTimeout(function () {
