@@ -270,7 +270,6 @@ const KillHead = {
     },
 
     grow: function () {
-        setTimeout(function () { debug.sg.style.backgroundColor = pxoff; }, Settings.so);
         let x, y;
         if (this.Body.length > 0) {
             const last = this.Body[this.Body.length - 1];
@@ -281,7 +280,7 @@ const KillHead = {
             y = this.Head.py;
         }
         const newElement = document.createElement("div");
-        newElement.className = "kill";
+        newElement.className = "snake";
         newElement.style.gridColumn = x.toString();
         newElement.style.gridRow = y.toString();
         GameMap.Grid.appendChild(newElement);
