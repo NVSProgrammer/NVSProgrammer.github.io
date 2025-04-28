@@ -204,7 +204,7 @@ const KillHead = {
         this.Head.y = newXY.y;
         let object = getObject(this.Head.x, this.Head.y);
         if (object) {
-            if (object.className == "wall" || object.className == "kill") {
+            if (object.className == "wall") {
                 this.status = 1;
             }
             else this.interact(object);
@@ -245,8 +245,7 @@ const KillHead = {
     interact: function (object) {
         d = this.Head.d;
         if (this.jumpCount > Settings.mjbk && Settings.jump_kill) {
-            this.status = -2;
-            kill();
+            this.status = 1;
         }
         switch (object.className) {
             case "apple":
@@ -255,6 +254,7 @@ const KillHead = {
                 this.grow();
                 object.remove();
                 break;
+            case "kill":
             case "jump":
                 this.status = 2;
                 do {
@@ -263,7 +263,7 @@ const KillHead = {
                     this.Head.x = newXY.x;
                     this.Head.y = newXY.y;
                     if (object) this.interact(object);
-                } while (object && (object.className == "wall" || object.className == "snake"));
+                } while (object && (object.className == "wall" || object.className == "snake" || object.className == "kill"));
                 this.jumpCount++;
                 break;
         }
@@ -375,14 +375,14 @@ function Reset() {
     if (Settings.crdc) d = Settings.crd;
     else d = Math.max(Settings.dNewObject, Settings.dInputLock, Settings.dSnakeMove);
 
-    GameMap.Grid.innerHTML = '<div id="Head">></div>';
+    GameMap.Grid.innerHTML = '<div id="Head">></div><div id="KillHead">~</div>';
+
     Snake.Head.e = document.getElementById('Head');
     Snake.Head.x = 1;
     Snake.Head.y = 1;
     Snake.Head.d = "right";
     Snake.Body = [];
-    
-    GameMap.Grid.innerHTML += '<div id="KillHead">~</div>';
+
     KillHead.Head.e = document.getElementById('KillHead');
     KillHead.Head.x = 5;
     KillHead.Head.y = 10;
@@ -434,9 +434,14 @@ function cancelSettings() {
 }
 
 document.addEventListener('keydown', function (event) {
+    console.clear();
+    console.log("---------------------------------------")
+    console.log("#1: ", event.code);
     if (!locked) {
         debug.il_.style.backgroundColor = pxon;
+        console.log("#2: ", event.code);
         if (!pause) {
+            console.log("#3: ", event.code);
             switch (event.code) {
                 case "ArrowRight":
                 case "KeyD":
