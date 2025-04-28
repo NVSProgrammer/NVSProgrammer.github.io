@@ -191,6 +191,11 @@ const KillHead = {
     Body: [],
 
     move: function () {
+        let randomNumber = getRandomInt(1, 100);
+        if(randomNumber >= 0 && randomNumber < 25) this.Head.d = "left";
+        if(randomNumber >= 25 && randomNumber < 50) this.Head.d = "right";
+        if(randomNumber >= 50 && randomNumber < 75) this.Head.d = "up";
+        if(randomNumber >= 75 && randomNumber <= 100) this.Head.d = "down";
         this.status = 0;
         const px = this.Head.x;
         const py = this.Head.y;
@@ -202,12 +207,18 @@ const KillHead = {
             if (object.className == "wall") {
                 this.status = 1;
             }
+            else if(object.className == "kill"){
+                this.status = 5;
+            }
             else this.interact(object);
         } else {
             this.status = 0;
             this.jumpCount = 0;
         }
-        if (this.status != 1) {
+        if(this.status == 5){
+            move();
+        }
+        else if (this.status != 1) {
             this.status = 0;
             this.Head.e.style.gridColumn = this.Head.x.toString();
             this.Head.e.style.gridRow = this.Head.y.toString();
@@ -235,11 +246,6 @@ const KillHead = {
             this.Head.x = px;
             this.Head.y = py;
         }
-        let randomNumber = getRandomInt(1, 100);
-        if(randomNumber >= 0 && randomNumber < 25) this.Head.d = "left";
-        if(randomNumber >= 25 && randomNumber < 50) this.Head.d = "right";
-        if(randomNumber >= 50 && randomNumber < 75) this.Head.d = "up";
-        if(randomNumber >= 75 && randomNumber <= 100) this.Head.d = "down";
     },
 
     interact: function (object) {
