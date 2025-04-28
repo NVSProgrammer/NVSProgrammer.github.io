@@ -214,11 +214,11 @@ const KillHead = {
             if (this.Body.length > 0) for (let i = 0; i < this.Body.length; i++) {
                 let x, y;
                 if (i == this.Body.length - 1) {
-                    x = this.Head.px * 2;
-                    y = this.Head.py * 2;
+                    x = this.Head.px;
+                    y = this.Head.py;
                 } else {
-                    x = this.Body[i + 1].x * 2;
-                    y = this.Body[i + 1].y * 2;
+                    x = this.Body[i + 1].x;
+                    y = this.Body[i + 1].y;
                 }
                 this.Body[i].e.style.gridColumn = x.toString();
                 this.Body[i].e.style.gridRow = y.toString();
