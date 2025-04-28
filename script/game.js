@@ -280,7 +280,7 @@ const KillHead = {
             y = this.Head.py;
         }
         const newElement = document.createElement("div");
-        newElement.className = "snake";
+        newElement.className = "kill";
         newElement.style.gridColumn = x.toString();
         newElement.style.gridRow = y.toString();
         GameMap.Grid.appendChild(newElement);
