@@ -286,7 +286,7 @@ const KillHead = {
         newElement.style.gridRow = y.toString();
         GameMap.Grid.appendChild(newElement);
         this.Body.unshift({ px: x, py: y, x: x, y: y, e: newElement });
-};
+}
 
 const Settings = {
     dSnakeMove: 300,
