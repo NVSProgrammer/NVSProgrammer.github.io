@@ -381,12 +381,14 @@ function Reset() {
     Snake.Head.y = 1;
     Snake.Head.d = "right";
     Snake.Body = [];
-GameMap.Grid.innerHTML = '<div id="KillHead">></div>';
+    
+    GameMap.Grid.innerHTML += '<div id="KillHead">~</div>';
     KillHead.Head.e = document.getElementById('KillHead');
     KillHead.Head.x = 5;
     KillHead.Head.y = 10;
     KillHead.Head.d = "right";
     KillHead.Body = [];
+
     GameMap.Score.innerText = "0";
     pause = true;
     setTimeout(function () {
