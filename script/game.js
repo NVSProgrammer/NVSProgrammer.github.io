@@ -173,7 +173,7 @@ const Snake = {
             setTimeout(function () { this.debugLocked = false; }, Settings.so);
         }
     }
-};
+}
 
 const KillHead = {
     status: 0,
