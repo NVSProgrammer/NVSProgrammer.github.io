@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function aso() { Settings.so = parseInt(SElements.so.value); }
-function cso() { SElements.value = Settings.so; }
+function cso() { SElements.so.value = Settings.so; }
 
 function start() {
     GameMap.update();
