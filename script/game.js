@@ -204,21 +204,15 @@ const KillHead = {
         this.Head.y = newXY.y;
         let object = getObject(this.Head.x, this.Head.y);
         if (object) {
-            if (object.className == "wall") {
+            if (object.className == "wall" || object.className == "kill") {
                 this.status = 1;
-            }
-            else if(object.className == "kill"){
-                this.status = 5;
             }
             else this.interact(object);
         } else {
             this.status = 0;
             this.jumpCount = 0;
         }
-        if(this.status == 5){
-            move();
-        }
-        else if (this.status != 1) {
+        if (this.status != 1) {
             this.status = 0;
             this.Head.e.style.gridColumn = this.Head.x.toString();
             this.Head.e.style.gridRow = this.Head.y.toString();
