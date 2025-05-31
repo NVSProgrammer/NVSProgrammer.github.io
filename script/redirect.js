@@ -1,5 +1,5 @@
 const ref = {
-    "ABRace_Latch-Code": "#MY_REPO#/School-Projects/blob/main/Arduino/ABRaceLatch/ABRaceLatch.ino"
+    "ABRaceLatch-Code": "#MY_REPO#/School-Projects/blob/main/Arduino/ABRaceLatch/ABRaceLatch.ino"
 }
 
 window.onload = function(){
