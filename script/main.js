@@ -18,8 +18,7 @@ var last_index = 0;
 var lastRef;
 
 window.onload = function () {
-    const URLArgs = new URLSearchParams(window.location.search);
-    const page = URLArgs.get("page");
+    const page = new URLSearchParams(window.location.search).get("page");
     if (page) bar_button(page);
     else bar_button("home");
 }
