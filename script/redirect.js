@@ -2,8 +2,6 @@ const ref = {
     "ABRaceLatch-Code": "#MY_REPO#/School-Projects/blob/main/Arduino/ABRaceLatch/ABRaceLatch.ino"
 }
 
-window.addEventListener('load', function() {
-    const urln = new URLSearchParams(window.location.search).get("r");
-    if (urln) window.location.href = ref[urln]
-        .replace("#MY_REPO#", "https://github.com/NVSProgrammer");
-});
+const urln = new URLSearchParams(window.location.search).get("r");
+if (urln) window.location.href = ref[urln]
+    .replace("#MY_REPO#", "https://github.com/NVSProgrammer");
