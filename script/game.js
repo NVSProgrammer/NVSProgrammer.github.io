@@ -467,30 +467,30 @@ document.addEventListener('keydown', function (event) {
             debug.sd.innerText = Snake.Head.d;
             locked = true;
         }
-        switch (event.code) {
-            case "Escape":
-                window.location.href = "index.html";
-                break;
-            case "Space":
-                pause = !pause;
-                start();
-                break;
-            case "KeyR":
-                Reset();
-                break
-            case "KeyC":
-                if (SElements.e.style.visibility == "hidden") SElements.e.style.visibility = "visible";
-                else SElements.e.style.visibility = "hidden";
-                break;
-            case "KeyB":
-                if (debug.e.style.visibility == "hidden") debug.e.style.visibility = "visible";
-                else debug.e.style.visibility = "hidden";
-                break;
-        }
         setTimeout(function () {
             locked = false;
             debug.il_.style.backgroundColor = pxoff;
         }, Settings.dInputLock);
+    }
+    switch (event.code) {
+        case "Escape":
+            window.location.href = "index.html";
+            break;
+        case "Space":
+            pause = !pause;
+            start();
+            break;
+        case "KeyR":
+            Reset();
+            break
+        case "KeyC":
+            if (SElements.e.style.visibility == "hidden") SElements.e.style.visibility = "visible";
+            else SElements.e.style.visibility = "hidden";
+            break;
+        case "KeyB":
+            if (debug.e.style.visibility == "hidden") debug.e.style.visibility = "visible";
+            else debug.e.style.visibility = "hidden";
+            break;
     }
 });
 
