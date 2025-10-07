@@ -47,6 +47,7 @@ function select(i) {
 
 function bar_button(value_) {
     lastRef = value_;
+    history.pushState(null, "", "?page=" + value_); 
     switch (value_) {
         case "home":
             page_html.src = "./home.html";
